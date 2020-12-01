@@ -19,8 +19,6 @@ def scrape():
     #NASA Mars News
 
 
-
-
     #Visiting the page through the test browser
     url = 'https://mars.nasa.gov/news/'
     browser.visit(url)
@@ -148,5 +146,15 @@ def scrape():
         
     #Print list of dictionaries
     hemisphere_image_urls
+
+    #returning dictionary containing all of the scraped data
+    scraped_data = {"News Title": news_title,
+                    "News Paragraph": news_p,
+                    "Featured Image": featured_image_url,
+                    "Mars Facts": html_table,
+                    "Hemispheres": hemisphere_image_urls
+                    }
+
+    return(scraped_data)
         
 
