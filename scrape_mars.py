@@ -6,13 +6,12 @@ import time
 import requests
 import pandas as pd
 
-
-def scrape():
-
+def init_browser():
     # #Using chrome to show the process
-    # executable_path = {'executable_path': ChromeDriverManager().install()}
-    # browser = Browser('chrome', **executable_path, headless=False)
+    executable_path = {'executable_path': ChromeDriverManager().install()}
+    return browser = Browser('chrome', **executable_path, headless=False)
 
+def scrape_web():
 
     #NASA Mars News
 
