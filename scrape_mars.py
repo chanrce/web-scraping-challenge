@@ -151,6 +151,5 @@ def scrape_web():
     browser.quit()
     
     return(scraped_data)
-    print(scraped_data)
         
 

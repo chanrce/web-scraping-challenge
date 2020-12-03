@@ -5,13 +5,8 @@ import scrape_mars
 
 app=Flask(__name__)
 
-#Setup Mongo connection
-conn = "mongodb://localhost: 27017"
-client = pymongo.MongoClient(conn)
-
-#Connect to mongo db and collection
-
-
+#Setup Mongo connection using PyMongo
+mongo = PyMongo(app, uri = "mongodb://localhost:27017/mars_app")
 
 
 #root route
@@ -24,7 +19,13 @@ client = pymongo.MongoClient(conn)
 @app.route("/scrape")
 def scrape():
     #Getting scraped data by calling the function "scrape_web" from scrape_mars.py
-    data = scrape_mars.scrape_web()
+    m_data = scrape_mars.scrape_web()
 
     #Storing value in Mongo as a Python dict
-    mongo.db.collection.update()
+    mongo.db.collection.update({}, m_data, upsert=True)
+
+    #Redirect back to home page
+    return redirect ("/")
+
+if __name__ == "__main__":
+    app.run(debug=True)
