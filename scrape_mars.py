@@ -9,11 +9,9 @@ import pandas as pd
 
 def scrape():
 
-    #Using chrome to show the process
-    executable_path = {'executable_path': ChromeDriverManager().install()}
-    browser = Browser('chrome', **executable_path, headless=False)
-
-
+    # #Using chrome to show the process
+    # executable_path = {'executable_path': ChromeDriverManager().install()}
+    # browser = Browser('chrome', **executable_path, headless=False)
 
 
     #NASA Mars News
@@ -28,10 +26,6 @@ def scrape():
 
     #Assigning news title and paragraph to variables
     step_one=soup.select_one("ul.item_list li.slide")
-
-
-
-
     news_title=step_one.find('div', class_='content_title').text
     news_p=step_one.find("div", class_="article_teaser_body").text
 
@@ -154,7 +148,10 @@ def scrape():
                     "Mars Facts": html_table,
                     "Hemispheres": hemisphere_image_urls
                     }
-
+    
+    browser.quit()
+    
     return(scraped_data)
+    print(scraped_data)
         
 
