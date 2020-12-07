@@ -152,7 +152,7 @@ def scrape_web():
                     }
     
     browser.quit()
-    print(scraped_data)
+    # print(scraped_data)
 
     return scraped_data
         
