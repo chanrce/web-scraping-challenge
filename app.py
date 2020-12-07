@@ -9,10 +9,13 @@ app=Flask(__name__)
 mongo = PyMongo(app, uri = "mongodb://localhost:27017/mars_app")
 
 
-#root route
+# #root route
 @app.route("/")
+def home():
 
-
+    
+    #Return template and data
+    return render_template("index.html", )
 
 
 #scrape route
@@ -21,7 +24,7 @@ def scrape():
     #Getting scraped data by calling the function "scrape_web" from scrape_mars.py
     m_data = scrape_mars.scrape_web()
 
-    #Storing value in Mongo as a Python dict
+    #Update the Mongo database using update and upsert = True
     mongo.db.collection.update({}, m_data, upsert=True)
 
     #Redirect back to home page

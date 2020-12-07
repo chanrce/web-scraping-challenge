@@ -3,22 +3,25 @@ from splinter import Browser
 from bs4 import BeautifulSoup
 from webdriver_manager.chrome import ChromeDriverManager
 import time
-import requests
 import pandas as pd
+import requests
 
 def init_browser():
-    # #Using chrome to show the process
+    #Using chrome to show the process
     executable_path = {'executable_path': ChromeDriverManager().install()}
-    return browser = Browser('chrome', **executable_path, headless=False)
+    return Browser('chrome', **executable_path, headless=False)
 
 def scrape_web():
-
+    browser=init_browser()
     #NASA Mars News
-
 
     #Visiting the page through the test browser
     url = 'https://mars.nasa.gov/news/'
     browser.visit(url)
+
+    time.sleep(1)
+
+    #Scrape page into Soup
     html=browser.html
     soup = BeautifulSoup(html, 'html.parser')
 
@@ -28,8 +31,8 @@ def scrape_web():
     news_title=step_one.find('div', class_='content_title').text
     news_p=step_one.find("div", class_="article_teaser_body").text
 
-    print(news_title)
-    print(news_p)
+    # print(news_title)
+    # print(news_p)
 
 
 
@@ -72,7 +75,7 @@ def scrape_web():
 
     # #Combined URL
     featured_image_url = base_url + img_src3
-    print(featured_image_url)
+    # print(featured_image_url)
 
 
 
@@ -93,13 +96,13 @@ def scrape_web():
 
     # Selecting the table we want
     facts_df=tables[0]
-    facts_df.head(10)
+    # facts_df.head(10)
 
 
 
     # Converting data to HTML table string
     html_table = facts_df.to_html()
-    html_table
+    # html_table
 
 
 
@@ -138,7 +141,7 @@ def scrape_web():
         hemisphere_image_urls.append({"title": title, "img_url": usgs_img_url})
         
     #Print list of dictionaries
-    hemisphere_image_urls
+    # hemisphere_image_urls
 
     #returning dictionary containing all of the scraped data
     scraped_data = {"News Title": news_title,
@@ -149,7 +152,8 @@ def scrape_web():
                     }
     
     browser.quit()
-    
-    return(scraped_data)
+    print(scraped_data)
+
+    return scraped_data
         
 
