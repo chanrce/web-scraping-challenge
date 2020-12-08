@@ -9,18 +9,34 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
+<!-- Header and button -->
 <body>
   <div class="container-fluid">
     <div class="jumbotron text-center">
       <h1>Mission to Mars</h1>
-      <h1>test: {{information.news_title}}</h1>
       <p>The scoop on Mars</p>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Mars Data!</a></p>
     </div>
-    <h2>Latest Mars News</h2>
-    <p><strong>{{ information.news_title }}</strong></h3>
-        <p>{{ information.news_p }}</p>
+  </div>
+<!-- News title and snippet -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="padding 20pt">
+      <h2 class >Latest Mars News</h2>
+        <p><strong>{{ information["News Title"]}}</strong></p>
+      <p>{{ information["News Paragraph"] }}</p>
+   </div>
+  </div>
+  
 
+        <img src="{{information["Featured Image"]}}">
+        <p>{{information["Mars Facts"]|safe}}</p>
+        {%for x in information.Hemispheres%}
+           <img src= "{{x["img_url"]}}">
+        {%endfor%}
+
+       
+  
   </div>
   </div>
 </body>
