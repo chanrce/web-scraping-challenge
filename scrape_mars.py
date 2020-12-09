@@ -100,8 +100,9 @@ def scrape_web():
 
 
 
-    # Converting data to HTML table string
-    html_table = facts_df.to_html()
+    # Converting data to HTML table string. Removing index and headers for clearer table.
+    html_table = facts_df.to_html(index=False, header=False)
+
     # html_table
 
 
