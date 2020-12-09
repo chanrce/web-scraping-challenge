@@ -54,18 +54,27 @@
   
   <!-- Section Header -->
   <h2 class="text-center">Mars Hemispheres</h2>
+  
+  
+  
   <!-- Thematic break -->
   <hr>
+ 
+  
   <!-- Hemispheres information -->
-   <div class="row">
-    <div class="col-md-6">
-
-      {%for x in information.Hemispheres%}
-      <img src= "{{x["img_url"]}}">
+  <div class = "container-fluid">
+    
+    <div class="row">
+      
+    {%for x in information.Hemispheres%}
+        <div class="col-md-6">
+        <img src= "{{x["img_url"]}}" class="img-fluid" width=75% height = 75%>
+        </div>
       {%endfor%}
-
+    </div>
   </div>
-  </div>
+  
+  
 
 
 
