@@ -25,45 +25,29 @@ def scrape_web():
     html=browser.html
     soup = BeautifulSoup(html, 'html.parser')
 
-
     #Assigning news title and paragraph to variables
     step_one=soup.select_one("ul.item_list li.slide")
     news_title=step_one.find('div', class_='content_title').text
     news_p=step_one.find("div", class_="article_teaser_body").text
 
-    # print(news_title)
-    # print(news_p)
-
-
-
     #JPL Mars Space Images
-
-
 
     # New url
     img_url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
     browser.visit(img_url)
 
-
     # Click button
     button = browser.find_by_id('full_image').click()
 
-
-
     # Click button on next page "more info"
     button2 = browser.links.find_by_partial_text("more info").click()
-
-
 
     # Get image
     #Use BeautifulSoup to parse the html
     html_image=browser.html
     b_soup = BeautifulSoup(html_image, 'html.parser')
 
-
-
     # Webscrape to find the image source
-
 
     img_src=b_soup.find(class_="lede")   
     img_src2=img_src.find("a", href=True)
@@ -77,35 +61,23 @@ def scrape_web():
     featured_image_url = base_url + img_src3
     # print(featured_image_url)
 
-
-
     # Mars Facts
-
-
 
     # New url
     f_url = 'https://space-facts.com/mars/'
     browser.visit(f_url)
 
-
-
     # Pandas scraping
     tables = pd.read_html(f_url)
-
-
 
     # Selecting the table we want
     facts_df=tables[0]
     # facts_df.head(10)
 
-
-
     # Converting data to HTML table string. Removing index and headers for clearer table.
     html_table = facts_df.to_html(index=False, header=False)
 
     # html_table
-
-
 
     # Mars Hemispheres
 
@@ -116,7 +88,6 @@ def scrape_web():
     # Beautiful Soup Parser
     usgs_html=browser.html
     usgs_soup = BeautifulSoup(usgs_html, 'html.parser')
-
 
     #List of dictionaries: titles and links
     hemisphere_image_urls = []
@@ -142,7 +113,7 @@ def scrape_web():
         hemisphere_image_urls.append({"title": title, "img_url": usgs_img_url})
         
     #Print list of dictionaries
-    # hemisphere_image_urls
+
 
     #returning dictionary containing all of the scraped data
     scraped_data = {"News Title": news_title,
@@ -153,8 +124,7 @@ def scrape_web():
                     }
     
     browser.quit()
-    # print(scraped_data)
-
+   
     return scraped_data
         
 
