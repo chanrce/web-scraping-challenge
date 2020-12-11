@@ -27,10 +27,6 @@
 
 * See [Scraping Sources](#scraping-sources) to visit web scraping sources.
 
-## Data Storage
-
-## Flask Application
-
 ## The Final Product: A Web Application
 
 * ![App Top](Images/web_top.png)
